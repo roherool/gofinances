@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useFocusEffect } from "@react-navigation/native";
 import { useTheme } from "styled-components";
+import { useAuth } from "../../hooks/auth";
 
 import { HighlightCard } from "../../components/HighlightCard";
 import {
@@ -35,6 +36,7 @@ export interface DataListProps extends TransactionCardProps {
 
 interface HighlightProps {
   amount: string;
+  lastTransaction: string;
 }
 
 interface HighlightData {
@@ -51,9 +53,39 @@ export function Dashboard() {
   );
 
   const theme = useTheme();
+  const { signOut, user } = useAuth();
+
+  function getLastTransactionDate(
+    collection: DataListProps[],
+    type: "positive" | "negative"
+  ) {
+    const collectionFilttered = collection.filter(
+      (transaction) => transaction.type === type
+    );
+
+    if (collectionFilttered.length === 0) {
+      return 0;
+    }
+
+    const lastTransaction = new Date(
+      Math.max.apply(
+        Math,
+        collectionFilttered
+          .filter((transaction) => transaction.type === type)
+          .map((transaction) => new Date(transaction.date).getTime())
+      )
+    );
+
+    return `${lastTransaction.getDate()} de ${lastTransaction.toLocaleString(
+      "pt-BR",
+      {
+        month: "long",
+      }
+    )}`;
+  }
 
   async function loadTransactions() {
-    const storage = "@gofinances:transactions";
+    const storage = `@gofinances:transactions_user${user.id}`;
     const response = await AsyncStorage.getItem(storage);
     const transactions = response ? JSON.parse(response) : [];
 
@@ -92,18 +124,20 @@ export function Dashboard() {
 
     setTransactions(dataFormatted);
 
-    const lastRevenueTransaction = new Date(
-      Math.max.apply(
-        Math,
-        transactions
-          .filter(
-            (transaction: DataListProps) => transaction.type === "positive"
-          )
-          .map((transaction: DataListProps) =>
-            new Date(transaction.date).getTime()
-          )
-      )
+    const lastIncomeTransaction = getLastTransactionDate(
+      transactions,
+      "positive"
     );
+
+    const lastExpenseTransaction = getLastTransactionDate(
+      transactions,
+      "negative"
+    );
+
+    const totalInterval =
+      lastExpenseTransaction === 0
+        ? "Não há transações"
+        : `01 à ${lastExpenseTransaction}`;
 
     const total = incomeTotal - expenseTotal;
 
@@ -113,22 +147,30 @@ export function Dashboard() {
           style: "currency",
           currency: "BRL",
         }),
+        lastTransaction:
+          lastIncomeTransaction === 0
+            ? "Não há transações"
+            : `Última entrada dia ${lastIncomeTransaction}`,
       },
       expenses: {
         amount: expenseTotal.toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
         }),
+        lastTransaction:
+          lastExpenseTransaction === 0
+            ? "Não há transações"
+            : `Última saída dia ${lastExpenseTransaction}`,
       },
       total: {
         amount: total.toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
         }),
+        lastTransaction: totalInterval,
       },
     });
 
-    console.log(dataFormatted);
     setIsLoading(false);
   }
 
@@ -155,15 +197,15 @@ export function Dashboard() {
               <UserInfo>
                 <Photo
                   source={{
-                    uri: "https://avatars.githubusercontent.com/u/32773611?v=4",
+                    uri: user.photo,
                   }}
                 />
                 <User>
                   <UserGreeting>Olá, </UserGreeting>
-                  <UserName>Roberto</UserName>
+                  <UserName>{user.name}</UserName>
                 </User>
               </UserInfo>
-              <LogoutButton onPress={() => {}}>
+              <LogoutButton onPress={signOut}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>
@@ -174,19 +216,19 @@ export function Dashboard() {
               type="up"
               title="Entradas"
               amount={highlightData.incomes.amount}
-              lastTransaction="Última entrada dia 13 de abril"
+              lastTransaction={highlightData.incomes.lastTransaction}
             />
             <HighlightCard
               type="down"
               title="Saídas"
               amount={highlightData.expenses.amount}
-              lastTransaction="Última saída dia 03 de abril"
+              lastTransaction={highlightData.expenses.lastTransaction}
             />
             <HighlightCard
               type="total"
               title="Total"
               amount={highlightData.total.amount}
-              lastTransaction="01 à 16 de abril"
+              lastTransaction={highlightData.total.lastTransaction}
             />
           </HighlightCards>
 

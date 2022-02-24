@@ -8,6 +8,7 @@ import uuid from "react-native-uuid";
 
 import { useForm } from "react-hook-form";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../../hooks/auth";
 
 import { InputForm } from "../../components/Form/InputForm";
 import { Button } from "../../components/Form/Button";
@@ -39,6 +40,7 @@ const schema = Yup.object().shape({
 });
 
 export function Register() {
+  const { user } = useAuth();
   const [transactionType, setTransactionType] = useState("");
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
   const [category, setCategory] = useState({
@@ -67,7 +69,7 @@ export function Register() {
     setCategoryModalOpen(false);
   }
 
-  async function handleRegister(form: FormData) {
+  async function handleRegister(form: Partial<FormData>) {
     if (!transactionType) return Alert.alert("Selecione o tipo de transação");
 
     if (category.key === "category")
@@ -83,14 +85,11 @@ export function Register() {
     };
 
     try {
-      const storage = "@gofinances:transactions";
+      const storage = `@gofinances:transactions_user${user.id}`;
       const data = await AsyncStorage.getItem(storage);
       const currentData = data ? JSON.parse(data) : [];
 
-      const dataFormatted = {
-        ...currentData,
-        newTransaction,
-      };
+      const dataFormatted = [...currentData, newTransaction];
 
       await AsyncStorage.setItem(storage, JSON.stringify(dataFormatted));
 
