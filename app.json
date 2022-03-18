@@ -3,8 +3,19 @@
     "name": "gofinances",
     "slug": "gofinances",
     "version": "1.0.0",
+    "scheme": "gofinances",
+    "icon": "./assets/logo.png",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "ios": {
+      "bundleIdentifier": "com.gofinances",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "packaged": "com.gofinances",
+      "versionCode": 1,
+      "package": "com.gofinances"
+    }
   }
 }
