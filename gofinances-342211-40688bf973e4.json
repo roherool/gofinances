@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "gofinances-342211",
+  "private_key_id": "40688bf973e4f942e95372a96f5ad1ab1494a5fe",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCYJUSbuJQBuVyN\nFQPBZwS+BVBun4fbilwNUgcuJjepJuulSPITLLkHnGfyosRpRElEuXPe6Cy9FBqK\n5/gkgi7GqTDzgTUJFxj6pqR9wKSpwMiQwaqeeYgSkyL4SnMgTS+ep0xddfmVG26Q\nqjFDp7lBSmuKj42ehJQo2lSehXswwpyc50UtEBt0/JRTAXJ6RCDvFmLpw1lMmsqH\n7+IQ+lq0EzHSkKfuBy9e2R0z72A34rqAJ4S72twRpTQINDW8Ols59qNJdhXlUURY\nqt7wUHtJk9Nvuq2HmD81eOEqFbnCd/3dW1PnNKcxOt3OQtfTLWlkWLqJeK+IAQvD\nX1yBydSVAgMBAAECggEAJU31/YyLVcTiSYFek1w0EHdzGjypbg4Ftgpn0kvyl9oA\nK12wZT0w/Qm/fwGj0P+6S0yBeaVJ2u6D940bDbCR0YoIg5wpqdns+QBFEsRaW3j2\ndG/X6tV3pL5I88IlakUiqO7yTXQwxvub54KjY6hLRxP9PFMocTamsUGfP+MQqoqc\nXBG/tAgPKIEnrHOXEbx8rJNl+CoxRvp0/Ixvu+WgbZawiw8BRPGuGtc0rHBh+V7B\nuS7aggCGGaMMJGq2uCmTiLZF8ks2v+hTxF86tWDozjtZdwXL0NV6xrB3basJkuKj\nKhp47I1ZK/SQgsevqpNyswl8grDV6LgkuLxUlnRRQQKBgQDH34VScDWIiOWv+gJ+\nFqOagO2csP78v/D21OlmrsPTQs81r/SWCmWBBHLkIy1LE2HpBeZRF/+e8Sk3k+iV\nY6gZpy9xKOG9nCnXxz54lIVW1JQTh6ZQ6w+mwE3dhFLVKOjDrcq3mXx1Ft4SuUon\n9wjMIILbJNKYPKjPh3LX/2/hRQKBgQDC3rWLF5otNTWGaDTDI+zECR8w33ALyn86\nK1kAZ5ePuSlgplY4y1I7HR9iWV9BEbFPyCZIYomfAZdX/PTUmkRrsOxWTFcWnXH8\n3NOJqydFKWcNkNHV0pmFUk51oj++IIKXzV7C10w/6RtrdPA8ezcXGY0ClSNdepBv\nEqEP1PDTEQKBgGCYdP1/f0/KIX9ny3aWiGDuOGfG3qTWOqWABoD6q2dZXX0r2X/9\n7EprFP+OxKAI8QPGNyYv+/kbwfi7QeeY7y/erb35rQePBmXjRBzQYpSxThMWNtna\nkIjdXYRWJBYinEOdpWAQDKcl8xOHewBPkm/csoEojaLHhiot4uHi8HYlAoGAXZwS\nZYCvBWx8C9bfEaaeRAWFwDp1XpSlzVGpbXJV8iqmX9FHtfylwdPZkasRAPb40DR7\nf2YmagWfqBrRmZeJqpnQzhvZ8fksGqYR0B4xvR2IbZHV2vtR2COToRqRuElxsm5r\nSPmXnVPjYhlIliUyb5xMiqMN3AfWfiTazfoivaECgYB86NsPRpKcdGt7iKT07Nlu\nnb/ygGUhcFMlxC0ZGBknI5DAOv8GzBTHZRvpIVcIA8ZPNEDTpdyJPIlsxgQDW8xi\ngOpGRiRL1vyidni0G1mWyXVHxelRqZzwf3tTksg0tOedl9P7UC3ihbinPdK6hxc0\nRlVeB0w4dMT8gumQIOZwXw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "expo-gofinances-app@gofinances-342211.iam.gserviceaccount.com",
+  "client_id": "105239695411098061212",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/expo-gofinances-app%40gofinances-342211.iam.gserviceaccount.com"
+}
